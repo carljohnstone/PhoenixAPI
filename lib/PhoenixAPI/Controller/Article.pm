@@ -29,18 +29,18 @@ sub article_list_GET {
         'c' => $c,
     });
 
-    my $articles_rs = $c->model('DB::Article')->published->search({},{
+    my @articles = $c->model('DB::Article')->published->search({},{
         rows => $validator->rows,
         page => $validator->page,
         order_by => $validator->order,
-    });
+    })->all;
 
     $self->status_ok(
         $c,
         entity => {
             'page' => $validator->page,
             'rows' => $validator->rows,
-            'results' => scalar($articles_rs->all),
+            'results' => scalar(@articles),
             'articles' => [
                 map
                 {
@@ -49,7 +49,7 @@ sub article_list_GET {
             'article' => $_,
         })->json
                 }
-                $articles_rs->all,
+                @articles,
             ],
         },
     );
