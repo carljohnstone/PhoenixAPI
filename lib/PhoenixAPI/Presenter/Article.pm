@@ -29,7 +29,7 @@ sub _build_json {
         headline => $self->article->headline,
         teaser => $self->article->teaser  ,
         bodytext => $self->article->bodytext,
-        publication_date => $self->article->publication_date,
+        publication_date => $self->article->publication_date->iso8601,
         show_on_homepage => $self->article->show_on_homepage,
     };
 

@@ -30,7 +30,7 @@ sub index :Path :Args(0) {
    $self->status_ok(
         $c,
         entity => {
-            article => {'href' => $c->uri_for_action('article/article_list')},
+            article => {'href' => $c->uri_for_action('article/article_list')->as_string },
         },
    );
 }
