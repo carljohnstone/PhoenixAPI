@@ -1,0 +1,32 @@
+<stacktrace>
+    verbose 1
+</stacktrace>
+
+<Model::DB>
+    <connect_info>
+        dsn DBI:mysql:database=phoenix;host=localhost
+        user db_user
+        password db_password
+        AutoCommit  1
+        RaiseError 1
+        mysql_enable_utf8 1
+        quote_char `
+        name_sep .
+    </connect_info>
+</Model::DB>
+
+<View::Email>
+    stash_key email
+    <default>
+        content_type text/plain
+        charset utf-8
+    </default>
+    <sender>
+        mailer SMTP
+        <mailer_args>
+            host localhost
+#            sasl_username sasl_username
+#            sasl_password sasl_password
+        </mailer_args>
+    </sender>
+</View::Email>
